@@ -42,9 +42,9 @@
 
 ##### 运行截图
 
-![image-20200519213806079](/img/in-post/DL/image-20200519213806079.png)
+![image-20200519213806079](https://github.com/Lin-Dada/text_classification/blob/main/DL/image-20200519213806079.png)
 
-![image-20200519214118619](/img/in-post/DL/image-20200519214118619.png)
+![image-20200519214118619](https://github.com/Lin-Dada/text_classification/blob/main/DL/image-20200519214118619.png)
 
 ### 背景及任务定义
 
@@ -67,11 +67,11 @@
 
  图1 每个类别新闻数：
 
-![img](/img/in-post/DL/clip_image002.jpg)
+![img](https://github.com/Lin-Dada/text_classification/blob/main/DL/clip_image002.jpg)
 
 图2 新闻样例（时政类）：
 
-![img](/img/in-post/DL/clip_image004.jpg)
+![img](https://github.com/Lin-Dada/text_classification/blob/main/DL/clip_image004.jpg)
 
 1. 分词
 
@@ -107,7 +107,7 @@ Bert的训练采用了33亿单词以及25亿维基百科和8亿文本语料，�
 
 图3 Bert模型架构
 
-![img](/img/in-post/DL/clip_image002-1589643065510.jpg)
+![img](https://github.com/Lin-Dada/text_classification/blob/main/DL/clip_image002-1589643065510.jpg)
 
 解释一下其中的几个关键模块：
 
@@ -129,7 +129,7 @@ LSTM是一种特殊的RNN结构，是Jürgen Schmidhuber等人在1997年提出�
 
 图4 LSTM结构图：
 
-![image-20200515145525368](/img/in-post/DL/image-20200515145525368.png)
+![image-20200515145525368](https://github.com/Lin-Dada/text_classification/blob/main/DL/image-20200515145525368.png)
 
 
 
@@ -157,7 +157,7 @@ FastText是FAIR（FacebookAIResearch）于2016年发布的一个文本分类模�
 
 图5： FastText模型结构图
 
-![image-20200515214843187](/img/in-post/DL/image-20200515214843187.png)
+![image-20200515214843187](https://github.com/Lin-Dada/text_classification/blob/main/DL/image-20200515214843187.png)
 
 FastText在输入层、隐藏层以及输出层都进行了一定的创新，总体上构成了这个优美的模型。在输入层上，区别于一般的文本表示方法使用单词的词向量表示，FastText则使用了更细粒度的字符级n-gram向量表示，可以捕捉单词内部更细微的语义，来消除形态方面的一些影响，在处理低频词以及未登陆词上效果很好。在隐藏层上，FastText没有使用复杂的神经网络结构，而是直接用所有字符级n-gram向量表示的平均结果来作为整个文本的向量表示，这被证明是一个十分简单有效的方法。在输出层上，不是使用传统的softmax分类层，而是使用改进后的层次softmax分类层，它根据训练样本中每一类出现的频率来构造哈夫曼树，频率越高的类别在树中的路径越短，频率越低的类别在树中的路径越长，这样在类别越多时性能提升越明显。
 
@@ -169,7 +169,7 @@ TextCNN是Yoon Kim在2014年提出的文本分类模型，相比较于传统的C
 
 图7：TextCNN结构图
 
-![https://img2018.cnblogs.com/blog/1182656/201809/1182656-20180919171920103-1233770993.png](/img/in-post/DL/clip_image002-1589880424472.jpg)
+![https://img2018.cnblogs.com/blog/1182656/201809/1182656-20180919171920103-1233770993.png](https://github.com/Lin-Dada/text_classification/blob/main/DL/clip_image002-1589880424472.jpg)
 
 ​    如上图所示，TextCNN首先需要通过word-embedding方式将每个词构建成词向量作为网络的输入，然后进行convolution卷积操作，其中有不同的kernel尺寸以便获得更宽的感受野，每个kernel size输出两个feature maps，经过1-max pooling层之后就变成了定长的表示，最后是全连接的softmax层，输出每个类别的概率，从而实现文本的分类。
 
@@ -181,7 +181,7 @@ RNN擅长处理序列结构，它可以考虑到句子上下文信息，是文�
 
 图7：TextRCNN结构图
 
-​                               ![image-20200516233343023](/img/in-post/DL/image-20200516233343023.png)
+​                               ![image-20200516233343023](https://github.com/Lin-Dada/text_classification/blob/main/DL/image-20200516233343023.png)
 
 上图为TextRCNN的结构图，从左往右看，第一步对词进行词向量编码得到*e*(*w*)，由word embedding层实现；第二步将词向量输入到双向的 RNN得到*Cl*和*Cr*，这里可以看成两个 RNN分别从左往右，从右往左扫描，这样能获得词汇更多的上下文信息，图中*Cl*(*wi*)和*Cr*(*wi*)分别代表词*wi*的左上下文和右上下文；第三步将前两步得出的结果拼接到一起得到单词*wi*的表示为[*Cl*(*wi*); *e*(*wi*); *Cr*(*wi*)]，再通过一个线性变化并输入到tanh激活函数得到*wi*的潜在语义向量*yi*(2)，通过这前三步即完成了文本的表示，该模型的作者表示，从卷积神经网络的角度来看，这三步完成的循环结构就是卷积层；第四步使用一维max pooling对*yi*(2)进行池化，得到*y*(3)，最大池化可以帮助我们找到句子中最重要的潜在语义信息；最后一步经过全连接层（线性变化），再接上softmax层得到分类结果。
 
@@ -193,7 +193,7 @@ DPCNN是腾讯AI-lab提出的，发表在自然语言处理领域顶级会议ACL
 
 图8：DPCNN结构图
 
-![img](/img/in-post/DL/clip_image002-1589803579184.jpg)
+![img](https://github.com/Lin-Dada/text_classification/blob/main/DL/clip_image002-1589803579184.jpg)
 
 ### 实验
 
